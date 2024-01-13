@@ -8,13 +8,13 @@ def alpha_beta(_permittivity_rel_real: float, _permittivity_rel_imag: float, _fr
     _permeability_free_space = 1.25663706e-6
 
     _alpha = _frequency * 2 * math.pi * (_permeability_free_space * _permittivity_free_space
-                                       * _permittivity_rel_real / 2 * (
-                                                   np.sqrt(1 + (_permittivity_rel_imag / _permittivity_rel_real) ** 2)
-                                                   - 1)) ** 0.5
+                                         * _permittivity_rel_real / 2 * (
+                                                 np.sqrt(1 + (_permittivity_rel_imag / _permittivity_rel_real) ** 2)
+                                                 - 1)) ** 0.5
     _beta = _frequency * 2 * math.pi * (_permeability_free_space * _permittivity_free_space
-                                      * _permittivity_rel_real / 2 * (
-                                                  np.sqrt(1 + (_permittivity_rel_imag / _permittivity_rel_real) ** 2)
-                                                  + 1)) ** 0.5
+                                        * _permittivity_rel_real / 2 * (
+                                                np.sqrt(1 + (_permittivity_rel_imag / _permittivity_rel_real) ** 2)
+                                                + 1)) ** 0.5
     return [_alpha, _beta]
 
 
@@ -29,6 +29,3 @@ def velocity(_beta: float, _frequency: float):
 def range_resolution(_beta: float, _frequency: float, _bandwidth: float):
     _velocity = velocity(_beta, _frequency)
     return _velocity / (2 * _bandwidth)
-
-
-
