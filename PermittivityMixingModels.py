@@ -60,9 +60,9 @@ def soil_peplinski_1995(
          * _permittivity_rel_real_free_water ** _alpha_coeff - _moisture_volumetric_ratio) \
          ** (1 / _alpha_coeff) # [1] eq.2
 
+    _permittivity_rel_real_soil_mixture = 1.15*_permittivity_rel_real_soil_mixture -0.68 # [1] eq.9
+
     _permittivity_rel_imag_soil_mixture = (_moisture_volumetric_ratio ** _beta_imag_coeff \
          * _permittivity_rel_imag_free_water ** _alpha_coeff) ** (1 / _alpha_coeff) # [1] eq.3
-
-    #_permittivity_rel_imag_soil_mixture = 1.15*_permittivity_rel_imag_soil_mixture -0.68 # [1] eq.9
     
     return [_permittivity_rel_real_soil_mixture, _permittivity_rel_imag_soil_mixture]
