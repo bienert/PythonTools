@@ -33,11 +33,11 @@ def soil_peplinski_1995(
     _alpha_coeff = 0.65  # empirically determined constant
 
     _conductivity_effective = 0.0467 + 0.2204 * _density_bulk - 0.4111 * _sand_mass_fraction \
-        + 0.6614 * _clay_mass_fraction # [1] eq.6
+        + 0.6614 * _clay_mass_fraction # [1] eq.10
 
     _permittivity_rel_real_free_water = _permittivity_water_high_freq_limit \
         + (_permittivity_water_low_freq_limit - _permittivity_water_high_freq_limit) \
-        / (1 + (2 * math.pi * _frequency * _relaxation_time_water) ** 2)
+        / (1 + (2 * math.pi * _frequency * _relaxation_time_water) ** 2) # [1] eq.6
 
     _term_1 = (2 * math.pi * _frequency * _relaxation_time_water) \
         * (_permittivity_water_low_freq_limit - _permittivity_water_high_freq_limit) \
