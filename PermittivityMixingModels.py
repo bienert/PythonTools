@@ -66,3 +66,36 @@ def soil_peplinski_1995(
          * _permittivity_rel_imag_free_water ** _alpha_coeff) ** (1 / _alpha_coeff) # [1] eq.3
     
     return [_permittivity_rel_real_soil_mixture, _permittivity_rel_imag_soil_mixture]
+
+# Info about the soils titled "Field1, Filed2..." in [1] & [3]
+class FieldSoilInfo:
+    # class vars:
+        # sand_mass_fraction
+        # clay_mass_fraction
+        # density_specific
+        # density_bulk
+    def __init__(self, _field_number: int):
+        self.field_number = _field_number
+        if (_field_number == 2) :
+            self.sand_mass_fraction = 0.4
+            self.clay_mass_fraction = 0.05
+            self.density_specific = 2.7
+            self.density_bulk = 1.
+        elif (_field_number == 3) :
+            self.sand_mass_fraction = 0.3
+            self.clay_mass_fraction = 0.1
+            self.density_specific = 2.59
+            self.density_bulk = 1.
+        elif (_field_number == 4) :
+            self.sand_mass_fraction = 0.15
+            self.clay_mass_fraction = 0.2
+            self.density_specific = 2.66
+            self.density_bulk = 0.97
+        else: # field 1
+            self.sand_mass_fraction = 0.5
+            self.clay_mass_fraction = 0.15
+            self.density_specific = 2.66
+            self.density_bulk = 1.7
+            self.field_number = 1
+            if (_field_number != 1) :
+                print("\n \n WARNING: Provided field number is valid. Field number must be 1-4. Defaulting to Field 1.")

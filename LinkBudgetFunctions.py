@@ -19,7 +19,10 @@ def alpha_beta(_permittivity_rel_real: float, _permittivity_rel_imag: float, _fr
 
 
 def power_loss_db(_alpha: float, _distance: float):
-    return 20 * math.log10(math.exp(-_alpha * _distance))
+    if (_alpha * _distance < 740):
+        return 20 * math.log10(math.exp(-1 * _alpha * _distance))
+    else: # argument of exp is too large for computation
+        return -6428
 
 
 def velocity(_beta: float, _frequency: float):

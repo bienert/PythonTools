@@ -1,6 +1,6 @@
-import PermittivityMixingModels as permittivity
 import matplotlib.pyplot as plt
-import numpy as np
+
+import PermittivityMixingModels as permittivity
 
 # Check against figure 5
 def check_figure_5():
@@ -58,10 +58,7 @@ def check_figure_1():
       # bulk density = 1.7.
       frequency                      = 300e6
       moisture_volumetric_ratio      = [0.05,  0.1,  0.15,   0.2,   0.25]
-      sand_mass_fraction             = 0.5 # table 1 of [1]
-      clay_mass_fraction             = 0.15
-      density_specific               = 2.66 # table 1 of [3]
-      density_bulk                   = 1.7
+      field_1 = permittivity.FieldSoilInfo(1)
 
       permittivity_rel_real_measured = [5.1, 7.5, 10.9, 14., 18.]
       permittivity_rel_imag_measured = [1.2, 2.,  2.5,  3.,  3.3]
@@ -73,8 +70,9 @@ def check_figure_1():
 
       for i in range(len(moisture_volumetric_ratio)):
             [permittivity_rel_real_estimated[i], permittivity_rel_imag_estimated[i]] = \
-                  permittivity.soil_peplinski_1995(frequency, moisture_volumetric_ratio[i], sand_mass_fraction, \
-                                                   clay_mass_fraction, density_specific, density_bulk)
+                  permittivity.soil_peplinski_1995(frequency, moisture_volumetric_ratio[i], \
+                                                   field_1.sand_mass_fraction, field_1.clay_mass_fraction, \
+                                                   field_1.density_specific, field_1.density_bulk)
             error_real[i] = abs(permittivity_rel_real_measured[i] - permittivity_rel_real_estimated[i])
 
             error_imag[i] = abs(permittivity_rel_imag_measured[i] - permittivity_rel_imag_estimated[i])
@@ -89,6 +87,7 @@ def check_figure_1():
       ax1.set_ylabel('Relative Permittivity')
       ax1.legend(["$\epsilon'$ Calculated Here", "$\epsilon''$ Calculated Here", "$\epsilon'$ Calculated in Peplinski", "$\epsilon''$ Calculated in Peplinski"])
       ax1.set_xlabel('Volumetric Moisture Ratio')
+      plt.show()
 
 
 
